@@ -32,7 +32,7 @@ async def adminlist_show(_, m: Message):
     global ADMIN_CACHE
     if m.chat.type not in [ChatType.SUPERGROUP,ChatType.GROUP]:
         return await m.reply_text(
-            text="This command is made to be used in groups only!",
+            text="Perintah ini dibuat untuk digunakan dalam grup saja!",
         )
     try:
         try:
@@ -41,7 +41,7 @@ async def adminlist_show(_, m: Message):
         except KeyError:
             admin_list = await admin_cache_reload(m, "adminlist")
             note = "<i>Note:</i> These are up-to-date values!"
-        adminstr = f"Admins in <b>{m.chat.title}</b>:" + "\n\n"
+        adminstr = f"Admins di <b>{m.chat.title}</b>:" + "\n\n"
         bot_admins = [i for i in admin_list if (i[1].lower()).endswith("bot")]
         user_admins = [i for i in admin_list if not (i[1].lower()).endswith("bot")]
         # format is like: (user_id, username/name,anonyamous or not)
@@ -72,11 +72,11 @@ async def adminlist_show(_, m: Message):
         LOGGER.info(f"Adminlist cmd use in {m.chat.id} by {m.from_user.id}")
     except Exception as ef:
         if str(ef) == str(m.chat.id):
-            await m.reply_text(text="Use /admincache to reload admins!")
+            await m.reply_text(text="Gunakan /admincache untuk mereload admins!")
         else:
             ef = str(ef) + f"{admin_list}\n"
             await m.reply_text(
-                text=f"Some error occured, report it using `/bug` \n <b>Error:</b> <code>{ef}</code>"
+                text=f"Terjadi kesalahan, laporkan menggunakan `/bug` \n <b>Error:</b> <code>{ef}</code>"
             )
         LOGGER.error(ef)
         LOGGER.error(format_exc())
@@ -86,7 +86,7 @@ async def adminlist_show(_, m: Message):
 @Gojo.on_message(command("zombies") & admin_filter)
 async def zombie_clean(c: Gojo, m: Message):
     zombie = 0
-    wait = await m.reply_text("Searching ... and banning ...")
+    wait = await m.reply_text("Mencari ... and banning ...")
     async for member in c.get_chat_members(m.chat.id):
         if member.user.is_deleted:
             zombie += 1
@@ -99,7 +99,7 @@ async def zombie_clean(c: Gojo, m: Message):
     if zombie == 0:
         return await wait.edit_text("Group is clean!")
     return await wait.edit_text(
-        text=f"<b>{zombie}</b> Zombies found and has been banned!",
+        text=f"<b>{zombie}</b> Zombies ditemukan dan telah di ban!",
     )
 
 
@@ -108,23 +108,23 @@ async def reload_admins(_, m: Message):
     global TEMP_ADMIN_CACHE_BLOCK
     if m.chat.type not in [ChatType.SUPERGROUP,ChatType.GROUP]:
         return await m.reply_text(
-            "This command is made to be used in groups only!",
+            "Perintah ini dibuat untuk digunakan dalam grup saja!",
         )
     if (
         (m.chat.id in set(TEMP_ADMIN_CACHE_BLOCK.keys()))
         and (m.from_user.id not in SUPPORT_STAFF)
         and TEMP_ADMIN_CACHE_BLOCK[m.chat.id] == "manualblock"
     ):
-        await m.reply_text("Can only reload admin cache once per 10 mins!")
+        await m.reply_text("Hanya dapat memuat ulang cache admin sekali setiap 10 menit!")
         return
     try:
         await admin_cache_reload(m, "admincache")
         TEMP_ADMIN_CACHE_BLOCK[m.chat.id] = "manualblock"
-        await m.reply_text(text="Reloaded all admins in this chat!")
+        await m.reply_text(text="Memuat ulang semua admin dalam obrolan ini!")
         LOGGER.info(f"Admincache cmd use in {m.chat.id} by {m.from_user.id}")
     except RPCError as ef:
         await m.reply_text(
-            text=f"Some error occured, report it using `/bug` \n <b>Error:</b> <code>{ef}</code>"
+            text=f"Terjadi kesalahan, laporkan menggunakan `/bug` \n <b>Error:</b> <code>{ef}</code>"
         )
         LOGGER.error(ef)
         LOGGER.error(format_exc())
@@ -147,7 +147,7 @@ async def tag_admins(_, m: Message):
     await m.reply_text(
         (
             f"{(await mention_html(m.from_user.first_name, m.from_user.id))}"
-            f" reported the message to admins!{mention_str}"
+            f" melaporkan pesan tersebut ke admin!{mention_str}"
         ),
     )
 
