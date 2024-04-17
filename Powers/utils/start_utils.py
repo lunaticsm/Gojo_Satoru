@@ -60,8 +60,8 @@ async def gen_start_kb(q: Message or CallbackQuery):
             ],
             [
                 (
-                    "🗃️ Source Code",
-                    "https://github.com/Gojo-Bots/Gojo_Satoru",
+                    "🔞 Alter Base",
+                    "https://t.me/base_alter",
                     "url",
                 ),
                 (
@@ -72,8 +72,8 @@ async def gen_start_kb(q: Message or CallbackQuery):
             ],
             [
                 (
-                    "Essential",
-                    "https://t.me/+PcVYvdzNt4E1YjM1",
+                    "🔞 Unholy",
+                    "https://t.me/unholyrated",
                     "url",
                 ),
                 (
