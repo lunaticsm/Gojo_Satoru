@@ -14,7 +14,7 @@ class Config:
     BOT_TOKEN = config("BOT_TOKEN", default=None)
     API_ID = int(config("API_ID", default="123"))
     API_HASH = config("API_HASH", default=None)
-    OWNER_ID = int(config("OWNER_ID", default=1344569458))
+    OWNER_ID = int(config("OWNER_ID", default=1983980399))
     MESSAGE_DUMP = int(config("MESSAGE_DUMP"))
     DEV_USERS = [
         int(i)
@@ -63,8 +63,8 @@ class Development:
     BOT_TOKEN = "YOUR BOT_TOKEN"
     API_ID = 12345  # Your APP_ID from Telegram
     API_HASH = "YOUR API HASH"  # Your APP_HASH from Telegram
-    OWNER_ID = 1344569458  # Your telegram user id defult to mine
-    MESSAGE_DUMP = -100845454887  # Your Private Group ID for logs
+    OWNER_ID = 1983980399  # Your telegram user id defult to mine
+    MESSAGE_DUMP = -1001307462253  # Your Private Group ID for logs
     DEV_USERS = []
     SUDO_USERS = []
     WHITELIST_USERS = []
