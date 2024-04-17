@@ -45,10 +45,10 @@ class Config:
     BDB_URI = config("BDB_URI",default=None)
     NO_LOAD = config("NO_LOAD", default="").split()
     PREFIX_HANDLER = config("PREFIX_HANDLER", default="/").split()
-    SUPPORT_GROUP = config("SUPPORT_GROUP", default="gojo_bots_network")
-    SUPPORT_CHANNEL = config("SUPPORT_CHANNEL", default="gojo_bots_network")
+    SUPPORT_GROUP = config("SUPPORT_GROUP", default="sexualredroom")
+    SUPPORT_CHANNEL = config("SUPPORT_CHANNEL", default="x_uta")
     WORKERS = int(config("WORKERS", default=16))
-    TIME_ZONE = config("TIME_ZONE",default='Asia/Kolkata')
+    TIME_ZONE = config("TIME_ZONE",default='Asia/Jakarta')
     BOT_USERNAME = ""
     BOT_ID = ""
     BOT_NAME = ""
