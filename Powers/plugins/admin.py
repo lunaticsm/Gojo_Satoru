@@ -157,7 +157,7 @@ async def fullpromote_usr(c: Gojo, m: Message):
     global ADMIN_CACHE
     if len(m.text.split()) == 1 and not m.reply_to_message:
         await m.reply_text(
-            text="I can't promote nothing! Give me an username or user id or atleast reply to that user"
+            text="Saya tidak dapat mempromosikan apa pun! Beri saya nama pengguna atau id pengguna atau setidaknya balas ke pengguna itu"
         )
         return
     try:
@@ -166,15 +166,15 @@ async def fullpromote_usr(c: Gojo, m: Message):
         return
     bot = await c.get_chat_member(m.chat.id, Config.BOT_ID)
     if user_id == Config.BOT_ID:
-        await m.reply_text("Huh, how can I even promote myself?")
+        await m.reply_text("Huh, bagaimana aku bisa mempromosikan diriku sendiri?")
         return
     if not bot.privileges.can_promote_members:
         return await m.reply_text(
-            "I don't have enough permissions!",
+            "Saya tidak memiliki cukup izin!",
         )  # This should be here
     user = await c.get_chat_member(m.chat.id, m.from_user.id)
     if m.from_user.id != OWNER_ID and user.status != CMS.OWNER:
-        return await m.reply_text("This command can only be used by chat owner.")
+        return await m.reply_text("Perintah ini hanya dapat digunakan oleh pemilik chat.")
     # If user is alreay admin
     try:
         admin_list = {i[0] for i in ADMIN_CACHE[m.chat.id]}
@@ -184,7 +184,7 @@ async def fullpromote_usr(c: Gojo, m: Message):
         }
     if user_id in admin_list:
         await m.reply_text(
-            "This user is already an admin, how am I supposed to re-promote them?",
+            "Pengguna ini sudah menjadi admin, bagaimana cara mempromosikannya kembali?",
         )
         return
     try:
