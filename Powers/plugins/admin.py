@@ -210,7 +210,7 @@ async def fullpromote_usr(c: Gojo, m: Message):
         )
         await m.reply_text(
             (
-                "{promoter} promoted {promoted} in chat <b>{chat_title}</b> with full rights!"
+                "{promoter} promoted {promoted} di chat <b>{chat_title}</b> dengan full hak!"
             ).format(
                 promoter=(await mention_html(m.from_user.first_name, m.from_user.id)),
                 promoted=(await mention_html(user_first_name, user_id)),
@@ -232,16 +232,16 @@ async def fullpromote_usr(c: Gojo, m: Message):
         except KeyError:
             await admin_cache_reload(m, "promote_key_error")
     except ChatAdminRequired:
-        await m.reply_text(text="I'm not admin or I don't have rights......")
+        await m.reply_text(text="Saya bukan admin atau saya tidak punya hak......")
     except RightForbidden:
-        await m.reply_text(text="I don't have enough rights to promote this user.")
+        await m.reply_text(text="Saya tidak mempunyai cukup hak untuk mempromosikan pengguna ini.")
     except UserAdminInvalid:
         await m.reply_text(
-            text="Cannot act on this user, maybe I wasn't the one who changed their permissions."
+            text="Tidak dapat menindak pengguna ini, mungkin bukan saya yang mengubah izinnya."
         )
     except RPCError as e:
         await m.reply_text(
-            text=f"Some error occured, report it using `/bug` \n <b>Error:</b> <code>{e}</code>"
+            text=f"Terjadi kesalahan, laporkan menggunakan `/bug` \n <b>Error:</b> <code>{e}</code>"
         )
         LOGGER.error(e)
         LOGGER.error(format_exc())
@@ -253,7 +253,7 @@ async def promote_usr(c: Gojo, m: Message):
     global ADMIN_CACHE
     if len(m.text.split()) == 1 and not m.reply_to_message:
         await m.reply_text(
-            text="I can't promote nothing!......reply to user to promote him/her...."
+            text="Saya tidak bisa mempromosikan apa pun!......balas pengguna untuk mempromosikannya...."
         )
         return
     try:
@@ -262,11 +262,11 @@ async def promote_usr(c: Gojo, m: Message):
         return
     bot = await c.get_chat_member(m.chat.id, Config.BOT_ID)
     if user_id == Config.BOT_ID:
-        await m.reply_text("Huh, how can I even promote myself?")
+        await m.reply_text("Huh, bagaimana aku bisa mempromosikan diriku sendiri?")
         return
     if not bot.privileges.can_promote_members:
         return await m.reply_text(
-            "I don't have enough permissions",
+            "Saya tidak memiliki cukup izin",
         )  # This should be here
     # If user is alreay admin
     try:
@@ -277,7 +277,7 @@ async def promote_usr(c: Gojo, m: Message):
         }
     if user_id in admin_list:
         await m.reply_text(
-            "This user is already an admin, how am I supposed to re-promote them?",
+            "Pengguna ini sudah menjadi admin, bagaimana cara mempromosikannya kembali?",
         )
         return
     try:
@@ -312,7 +312,7 @@ async def promote_usr(c: Gojo, m: Message):
             f"{m.from_user.id} promoted {user_id} in {m.chat.id} with title '{title}'",
         )
         await m.reply_text(
-            ("{promoter} promoted {promoted} in chat <b>{chat_title}</b>!").format(
+            ("{promoter} promoted {promoted} di chat <b>{chat_title}</b>!").format(
                 promoter=(await mention_html(m.from_user.first_name, m.from_user.id)),
                 promoted=(await mention_html(user_first_name, user_id)),
                 chat_title=f"{escape(m.chat.title)} title set to {title}"
@@ -338,11 +338,11 @@ async def promote_usr(c: Gojo, m: Message):
         await m.reply_text(text="I don't have enough rights to promote this user.")
     except UserAdminInvalid:
         await m.reply_text(
-            text="Cannot act on this user, maybe I wasn't the one who changed their permissions."
+            text="Tidak dapat menindak pengguna ini, mungkin bukan saya yang mengubah izinnya."
         )
     except RPCError as e:
         await m.reply_text(
-            text=f"Some error occured, report it using `/bug` \n <b>Error:</b> <code>{e}</code>"
+            text=f"Terjadi kesalahan, laporkan menggunakan `/bug` \n <b>Error:</b> <code>{e}</code>"
         )
         LOGGER.error(e)
         LOGGER.error(format_exc())
@@ -360,7 +360,7 @@ async def demote_usr(c: Gojo, m: Message):
     except Exception:
         return
     if user_id == Config.BOT_ID:
-        await m.reply_text("Get an admin to demote me!")
+        await m.reply_text("Minta admin untuk menurunkan saya!")
         return
     # If user not already admin
     try:
